@@ -10,9 +10,9 @@ import { ASSET_TYPES } from 'shared/constants'
 import builtInComponents from '../components/index'
 import { observe } from 'core/observer/index'
 
-import {
+import { 
   warn,
-  extend,
+  extend,  
   nextTick,
   mergeOptions,
   defineReactive
@@ -34,11 +34,11 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // exposed util methods.
   // NOTE: these are not considered part of the public API - avoid relying on
   // them unless you are aware of the risk.
-  Vue.util = {
+  Vue.util = {  //Vue中的工具方法
     warn,
-    extend,
-    mergeOptions,
-    defineReactive
+    extend,  //合并
+    mergeOptions, //合并策略
+    defineReactive //定义响应式
   }
 
   Vue.set = set
@@ -46,7 +46,7 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   Vue.nextTick = nextTick
 
   // 2.6 explicit observable API
-  Vue.observable = <T>(obj: T): T => {
+  Vue.observable = <>(obj: T): T => {
     observe(obj)
     return obj
   }
@@ -60,10 +60,11 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // components with in Weex's multi-instance scenarios.
   Vue.options._base = Vue
 
-  extend(Vue.options.components, builtInComponents)
+  {/* keep-alive的实现 */}
+  extend(Vue.options.components, builtInComponents)  
 
-  initUse(Vue)
-  initMixin(Vue)
-  initExtend(Vue)
-  initAssetRegisters(Vue)
+  initUse(Vue) //Vue.use
+  initMixin(Vue) // Vue.mixin 混入
+  initExtend(Vue) // Vue.extend
+  initAssetRegisters(Vue) //实现 Vue.component Vue.directive Vue.filter
 }

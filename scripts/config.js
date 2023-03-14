@@ -25,6 +25,7 @@ const weexFactoryPlugin = {
   }
 }
 
+// 对应的打包文件的路径
 const aliases = require('./alias')
 const resolve = p => {
   const base = p.split('/')[0]
@@ -34,6 +35,10 @@ const resolve = p => {
     return path.resolve(__dirname, '../', p)
   }
 }
+
+// dev prod
+// web-runtime(运行时无法解析 new Vue传入的template) web-full（runtime + 模板解析） compiler （只有compiler）
+// cjs esm borwser umd
 
 const builds = {
   // Runtime only (CommonJS). Used by bundlers e.g. Webpack & Browserify

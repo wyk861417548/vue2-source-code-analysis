@@ -94,7 +94,7 @@ export function nextTick (cb?: Function, ctx?: Object) {
         handleError(e, ctx, 'nextTick')
       }
     } else if (_resolve) {
-      _resolve(ctx)
+      _resolve(ctx)  //如果没有传递cb 默认会把promise的成功赋值
     }
   })
   if (!pending) {
